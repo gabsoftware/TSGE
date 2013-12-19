@@ -508,7 +508,7 @@ namespace tsge
             {
                 // Attempt to download the latest info..
                 var client = new WebClient();
-                var latest = client.DownloadString("https://tsge.googlecode.com/svn/trunk/latest.txt");
+                var latest = client.DownloadString("https://raw.github.com/atom0s/TSGE/master/latest.txt");
                 if (string.IsNullOrEmpty(latest))
                     throw new Exception("No update found!");
 

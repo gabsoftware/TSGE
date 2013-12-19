@@ -62,7 +62,7 @@ namespace tsge
         /// <param name="e"></param>
         private void lblSourceCode_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(new ProcessStartInfo("https://code.google.com/p/tsge/"));
+            Process.Start(new ProcessStartInfo("https://github.com/atom0s/TSGE"));
         }
     }
 }

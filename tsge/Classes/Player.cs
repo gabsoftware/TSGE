@@ -57,7 +57,7 @@ namespace tsge.Classes
             this.Inventory = new Item[58];
             this.Bank1 = new Item[40];
             this.Bank2 = new Item[40];
-            this.Buffs = new Buff[10];
+            this.Buffs = new Buff[22];
             this.ServerEntries = new ServerEntry[200];
 
             var item = Terraria.Instance.Items.Single(i => i.NetID == 0);

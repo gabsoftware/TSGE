@@ -54,12 +54,12 @@ namespace tsge.Classes
         /// <summary>
         /// Current supported game version.
         /// </summary>
-        public static List<int> GameVersions = new List<int>(new[] { 38, 47, 58, 68, 69, 70, 71, 72, 73 });
+        public static List<int> GameVersions = new List<int>(new[] { 38, 47, 58, 68, 69, 70, 71, 72, 73, 77 });
 
         /// <summary>
         /// The latest supported version of Terraria.
         /// </summary>
-        public static int LatestVersion = 73;
+        public static int LatestVersion = 77;
 
         /// <summary>
         /// Profile path to the Terraria save game files.
@@ -284,7 +284,7 @@ namespace tsge.Classes
                         for (var x = 0; x < ((p.GameVersion >= 58) ? 58 : 48); x++)
                         {
                             var temp = bReader.ReadInt32();
-                            if (temp >= 1867)
+                            if (temp >= 1966)
                                 p.Inventory[x].SetItem(0);
                             else
                             {
@@ -311,7 +311,8 @@ namespace tsge.Classes
                         }
 
                         // Read Buffs..
-                        for (var x = 0; x < 10; x++)
+                        var buffCount = (p.GameVersion < 74) ? 10 : 22;
+                        for (var x = 0; x < buffCount; x++)
                         {
                             p.Buffs[x].SetBuff(bReader.ReadInt32());
                             p.Buffs[x].Duration = bReader.ReadInt32();
@@ -467,7 +468,8 @@ namespace tsge.Classes
                 }
 
                 // Write player buffs..
-                for (var x = 0; x < 10; x++)
+                var buffCount = (player.GameVersion < 74) ? 10 : 22;
+                for (var x = 0; x < buffCount; x++)
                 {
                     bWriter.Write(player.Buffs[x].Id);
                     bWriter.Write(player.Buffs[x].Duration);
