@@ -1,2 +1,2 @@
-2.1.0.11
-https://www.dropbox.com/s/c62pkq3p3vx7t7y/tsge_2.1.0.11_beta.7z
+2.1.0.12
+https://github.com/atom0s/TSGE/releases/download/v2.1.0.12/tsge_2.1.0.12_beta.7z
