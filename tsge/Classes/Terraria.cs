@@ -54,12 +54,12 @@ namespace tsge.Classes
         /// <summary>
         /// Current supported game version.
         /// </summary>
-        public static List<int> GameVersions = new List<int>(new[] { 38, 47, 58, 68, 69, 70, 71, 72, 73, 77 });
+        public static List<int> GameVersions = new List<int>(new[] { 38, 47, 58, 68, 69, 70, 71, 72, 73, 77, 81, 83, 93 });
 
         /// <summary>
         /// The latest supported version of Terraria.
         /// </summary>
-        public static int LatestVersion = 77;
+        public static int LatestVersion = 93;
 
         /// <summary>
         /// Profile path to the Terraria save game files.
@@ -234,6 +234,15 @@ namespace tsge.Classes
                         p.Name = bReader.ReadString();
                         p.Difficulty = bReader.ReadByte();
                         p.Hair = bReader.ReadInt32();
+
+                        // Hair Dye
+                        if (p.GameVersion >= 82)
+                            bReader.ReadByte();
+
+                        // Hide Visual
+                        if (p.GameVersion >= 83)
+                            bReader.ReadByte();
+
                         p.IsMale = bReader.ReadBoolean();
                         p.Health = bReader.ReadInt32();
                         p.HealthMax = bReader.ReadInt32();
@@ -270,10 +279,18 @@ namespace tsge.Classes
                             p.Vanity[x].Prefix = bReader.ReadByte();
                         }
 
+                        // TODO: Handle new social equipment slots..
+                        for (var x = 0; x < 5; x++)
+                        {
+                            bReader.ReadInt32();
+                            bReader.ReadByte();
+                        }
+
                         // Read dye items..
                         if (p.GameVersion >= 47)
                         {
-                            for (var x = 0; x < 3; x++)
+                            var dyeCount = (p.GameVersion >= 81) ? 8 : 3;
+                            for (var x = 0; x < dyeCount; x++)
                             {
                                 p.Dye[x].SetItem(bReader.ReadInt32());
                                 p.Dye[x].Prefix = bReader.ReadByte();
@@ -284,7 +301,7 @@ namespace tsge.Classes
                         for (var x = 0; x < ((p.GameVersion >= 58) ? 58 : 48); x++)
                         {
                             var temp = bReader.ReadInt32();
-                            if (temp >= 1966)
+                            if (temp >= 2289)
                                 p.Inventory[x].SetItem(0);
                             else
                             {
@@ -355,7 +372,7 @@ namespace tsge.Classes
         {
             // Attempt to decrypt the player file..
             var playerData = DecryptProfile(fileName);
-            if (playerData == null) 
+            if (playerData == null)
                 return string.Empty;
 
             // Attempt to read the name..
@@ -400,6 +417,11 @@ namespace tsge.Classes
                 bWriter.Write(player.Name);
                 bWriter.Write(player.Difficulty);
                 bWriter.Write(player.Hair);
+
+                // TODO: Handle hair dye / visual flags..
+                bWriter.Write((byte)0);
+                bWriter.Write((byte)0);
+
                 bWriter.Write(player.IsMale);
                 bWriter.Write(player.Health);
                 bWriter.Write(player.HealthMax);
@@ -436,8 +458,15 @@ namespace tsge.Classes
                     bWriter.Write(player.Vanity[x].Prefix);
                 }
 
+                // TODO: Handle new social equipment slots..
+                for (var x = 0; x < 5; x++)
+                {
+                    bWriter.Write((int)0);
+                    bWriter.Write((byte)0);
+                }
+
                 // Write player dye..
-                for (var x = 0; x < 3; x++)
+                for (var x = 0; x < 8; x++)
                 {
                     bWriter.Write(player.Dye[x].NetID);
                     bWriter.Write(player.Dye[x].Prefix);
@@ -542,7 +571,7 @@ namespace tsge.Classes
             {
                 if (this.m_ItemList != null && this.m_ItemList.Count > 0)
                     this.m_ItemList.Sort(new NaturalItemNameComparer());
-                
+
                 if (this.m_ItemList == null)
                     return null;
 

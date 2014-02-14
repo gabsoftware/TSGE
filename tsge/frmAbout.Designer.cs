@@ -58,6 +58,7 @@ namespace tsge
             this.label8 = new System.Windows.Forms.Label();
             this.btnDonate = new System.Windows.Forms.Button();
             this.btnTwitter = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -194,11 +195,22 @@ namespace tsge
             this.btnTwitter.UseVisualStyleBackColor = true;
             this.btnTwitter.Click += new System.EventHandler(this.btnTwitter_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(162, 310);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 13);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "Terraria 1.2.3";
+            // 
             // frmAbout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(540, 408);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.btnDonate);
             this.Controls.Add(this.btnTwitter);
             this.Controls.Add(this.label8);
@@ -235,5 +247,6 @@ namespace tsge
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnTwitter;
         private System.Windows.Forms.Button btnDonate;
+        private System.Windows.Forms.Label label9;
     }
 }

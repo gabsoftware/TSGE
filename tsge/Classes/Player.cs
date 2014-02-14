@@ -53,7 +53,7 @@ namespace tsge.Classes
             this.Armor = new Item[3];
             this.Vanity = new Item[3];
             this.Accessories = new Item[5];
-            this.Dye = new Item[3];
+            this.Dye = new Item[8];
             this.Inventory = new Item[58];
             this.Bank1 = new Item[40];
             this.Bank2 = new Item[40];
