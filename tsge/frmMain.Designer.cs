@@ -84,6 +84,7 @@ namespace tsge
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkHideVisual = new System.Windows.Forms.CheckBox();
             this.cboDifficulty = new System.Windows.Forms.ComboBox();
             this.txtPlayerName = new System.Windows.Forms.TextBox();
             this.chkHotbarLocked = new System.Windows.Forms.CheckBox();
@@ -92,6 +93,8 @@ namespace tsge
             this.label1 = new System.Windows.Forms.Label();
             this.tpBuffs = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnLoadBuffs = new System.Windows.Forms.Button();
+            this.btnSaveBuffs = new System.Windows.Forms.Button();
             this.btnHackAllBuffDurations = new System.Windows.Forms.Button();
             this.btnMaxAllBuffDurations = new System.Windows.Forms.Button();
             this.btnDeleteAllBuffs = new System.Windows.Forms.Button();
@@ -183,6 +186,17 @@ namespace tsge
             this.inventoryItem01 = new tsge.Controls.ItemLabel();
             this.inventoryItem00 = new tsge.Controls.ItemLabel();
             this.tpEquipment = new System.Windows.Forms.TabPage();
+            this.equipmentItem23 = new tsge.Controls.ItemLabel();
+            this.equipmentItem22 = new tsge.Controls.ItemLabel();
+            this.equipmentItem21 = new tsge.Controls.ItemLabel();
+            this.equipmentItem20 = new tsge.Controls.ItemLabel();
+            this.equipmentItem19 = new tsge.Controls.ItemLabel();
+            this.label31 = new System.Windows.Forms.Label();
+            this.equipmentItem18 = new tsge.Controls.ItemLabel();
+            this.equipmentItem17 = new tsge.Controls.ItemLabel();
+            this.equipmentItem16 = new tsge.Controls.ItemLabel();
+            this.equipmentItem15 = new tsge.Controls.ItemLabel();
+            this.equipmentItem14 = new tsge.Controls.ItemLabel();
             this.btnLoadEquipmentSet = new System.Windows.Forms.Button();
             this.btnSaveEquipmentSet = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
@@ -328,8 +342,6 @@ namespace tsge
             this.aboutTSGEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnLoadBuffs = new System.Windows.Forms.Button();
-            this.btnSaveBuffs = new System.Windows.Forms.Button();
             this.tcMainTabControl.SuspendLayout();
             this.tpMainPlayer.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -368,11 +380,11 @@ namespace tsge
             this.tcMainTabControl.Controls.Add(this.tpEquipment);
             this.tcMainTabControl.Controls.Add(this.tpBankSafe);
             this.tcMainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcMainTabControl.Location = new System.Drawing.Point(0, 25);
+            this.tcMainTabControl.Location = new System.Drawing.Point(0, 27);
             this.tcMainTabControl.Name = "tcMainTabControl";
             this.tcMainTabControl.Padding = new System.Drawing.Point(25, 3);
             this.tcMainTabControl.SelectedIndex = 0;
-            this.tcMainTabControl.Size = new System.Drawing.Size(620, 441);
+            this.tcMainTabControl.Size = new System.Drawing.Size(620, 439);
             this.tcMainTabControl.TabIndex = 1;
             this.tcMainTabControl.SelectedIndexChanged += new System.EventHandler(this.tcMainTabControl_SelectedIndexChanged);
             // 
@@ -384,7 +396,7 @@ namespace tsge
             this.tpMainPlayer.Location = new System.Drawing.Point(4, 22);
             this.tpMainPlayer.Name = "tpMainPlayer";
             this.tpMainPlayer.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMainPlayer.Size = new System.Drawing.Size(612, 415);
+            this.tpMainPlayer.Size = new System.Drawing.Size(612, 413);
             this.tpMainPlayer.TabIndex = 0;
             this.tpMainPlayer.Text = "Player";
             this.tpMainPlayer.UseVisualStyleBackColor = true;
@@ -750,6 +762,7 @@ namespace tsge
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkHideVisual);
             this.groupBox1.Controls.Add(this.cboDifficulty);
             this.groupBox1.Controls.Add(this.txtPlayerName);
             this.groupBox1.Controls.Add(this.chkHotbarLocked);
@@ -763,6 +776,17 @@ namespace tsge
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Player";
+            // 
+            // chkHideVisual
+            // 
+            this.chkHideVisual.AutoSize = true;
+            this.chkHideVisual.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.playerBindingSource, "HideVisual", true));
+            this.chkHideVisual.Location = new System.Drawing.Point(104, 100);
+            this.chkHideVisual.Name = "chkHideVisual";
+            this.chkHideVisual.Size = new System.Drawing.Size(85, 17);
+            this.chkHideVisual.TabIndex = 6;
+            this.chkHideVisual.Text = "Hide Visual?";
+            this.chkHideVisual.UseVisualStyleBackColor = true;
             // 
             // cboDifficulty
             // 
@@ -789,7 +813,7 @@ namespace tsge
             // 
             this.chkHotbarLocked.AutoSize = true;
             this.chkHotbarLocked.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.playerBindingSource, "IsHotbarLocked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkHotbarLocked.Location = new System.Drawing.Point(104, 100);
+            this.chkHotbarLocked.Location = new System.Drawing.Point(176, 77);
             this.chkHotbarLocked.Name = "chkHotbarLocked";
             this.chkHotbarLocked.Size = new System.Drawing.Size(103, 17);
             this.chkHotbarLocked.TabIndex = 3;
@@ -834,7 +858,7 @@ namespace tsge
             this.tpBuffs.Location = new System.Drawing.Point(4, 22);
             this.tpBuffs.Name = "tpBuffs";
             this.tpBuffs.Padding = new System.Windows.Forms.Padding(3);
-            this.tpBuffs.Size = new System.Drawing.Size(612, 415);
+            this.tpBuffs.Size = new System.Drawing.Size(612, 413);
             this.tpBuffs.TabIndex = 1;
             this.tpBuffs.Text = "Buffs";
             this.tpBuffs.UseVisualStyleBackColor = true;
@@ -856,6 +880,26 @@ namespace tsge
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Buff Editor";
+            // 
+            // btnLoadBuffs
+            // 
+            this.btnLoadBuffs.Location = new System.Drawing.Point(156, 362);
+            this.btnLoadBuffs.Name = "btnLoadBuffs";
+            this.btnLoadBuffs.Size = new System.Drawing.Size(125, 23);
+            this.btnLoadBuffs.TabIndex = 8;
+            this.btnLoadBuffs.Text = "Load Buffs";
+            this.btnLoadBuffs.UseVisualStyleBackColor = true;
+            this.btnLoadBuffs.Click += new System.EventHandler(this.btnLoadBuffs_Click);
+            // 
+            // btnSaveBuffs
+            // 
+            this.btnSaveBuffs.Location = new System.Drawing.Point(6, 362);
+            this.btnSaveBuffs.Name = "btnSaveBuffs";
+            this.btnSaveBuffs.Size = new System.Drawing.Size(125, 23);
+            this.btnSaveBuffs.TabIndex = 7;
+            this.btnSaveBuffs.Text = "Save Buffs";
+            this.btnSaveBuffs.UseVisualStyleBackColor = true;
+            this.btnSaveBuffs.Click += new System.EventHandler(this.btnSaveBuffs_Click);
             // 
             // btnHackAllBuffDurations
             // 
@@ -1016,7 +1060,7 @@ namespace tsge
             this.tpInventory.Controls.Add(this.inventoryItem00);
             this.tpInventory.Location = new System.Drawing.Point(4, 22);
             this.tpInventory.Name = "tpInventory";
-            this.tpInventory.Size = new System.Drawing.Size(691, 474);
+            this.tpInventory.Size = new System.Drawing.Size(612, 413);
             this.tpInventory.TabIndex = 2;
             this.tpInventory.Text = "Inventory";
             this.tpInventory.UseVisualStyleBackColor = true;
@@ -2074,6 +2118,17 @@ namespace tsge
             // 
             // tpEquipment
             // 
+            this.tpEquipment.Controls.Add(this.equipmentItem23);
+            this.tpEquipment.Controls.Add(this.equipmentItem22);
+            this.tpEquipment.Controls.Add(this.equipmentItem21);
+            this.tpEquipment.Controls.Add(this.equipmentItem20);
+            this.tpEquipment.Controls.Add(this.equipmentItem19);
+            this.tpEquipment.Controls.Add(this.label31);
+            this.tpEquipment.Controls.Add(this.equipmentItem18);
+            this.tpEquipment.Controls.Add(this.equipmentItem17);
+            this.tpEquipment.Controls.Add(this.equipmentItem16);
+            this.tpEquipment.Controls.Add(this.equipmentItem15);
+            this.tpEquipment.Controls.Add(this.equipmentItem14);
             this.tpEquipment.Controls.Add(this.btnLoadEquipmentSet);
             this.tpEquipment.Controls.Add(this.btnSaveEquipmentSet);
             this.tpEquipment.Controls.Add(this.label23);
@@ -2097,10 +2152,150 @@ namespace tsge
             this.tpEquipment.Controls.Add(this.equipmentItem00);
             this.tpEquipment.Location = new System.Drawing.Point(4, 22);
             this.tpEquipment.Name = "tpEquipment";
-            this.tpEquipment.Size = new System.Drawing.Size(691, 474);
+            this.tpEquipment.Size = new System.Drawing.Size(612, 413);
             this.tpEquipment.TabIndex = 3;
             this.tpEquipment.Text = "Equipment";
             this.tpEquipment.UseVisualStyleBackColor = true;
+            // 
+            // equipmentItem23
+            // 
+            this.equipmentItem23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.equipmentItem23.Location = new System.Drawing.Point(505, 355);
+            this.equipmentItem23.Name = "equipmentItem23";
+            this.equipmentItem23.ShowItemCount = true;
+            this.equipmentItem23.Size = new System.Drawing.Size(42, 42);
+            this.equipmentItem23.TabIndex = 33;
+            this.equipmentItem23.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.equipmentItem23.Click += new System.EventHandler(this.equipmentItem_Click);
+            this.equipmentItem23.MouseEnter += new System.EventHandler(this.equipmentItem_MouseEnter);
+            this.equipmentItem23.MouseLeave += new System.EventHandler(this.equipmentItem_MouseLeave);
+            // 
+            // equipmentItem22
+            // 
+            this.equipmentItem22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.equipmentItem22.Location = new System.Drawing.Point(505, 308);
+            this.equipmentItem22.Name = "equipmentItem22";
+            this.equipmentItem22.ShowItemCount = true;
+            this.equipmentItem22.Size = new System.Drawing.Size(42, 42);
+            this.equipmentItem22.TabIndex = 32;
+            this.equipmentItem22.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.equipmentItem22.Click += new System.EventHandler(this.equipmentItem_Click);
+            this.equipmentItem22.MouseEnter += new System.EventHandler(this.equipmentItem_MouseEnter);
+            this.equipmentItem22.MouseLeave += new System.EventHandler(this.equipmentItem_MouseLeave);
+            // 
+            // equipmentItem21
+            // 
+            this.equipmentItem21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.equipmentItem21.Location = new System.Drawing.Point(505, 261);
+            this.equipmentItem21.Name = "equipmentItem21";
+            this.equipmentItem21.ShowItemCount = true;
+            this.equipmentItem21.Size = new System.Drawing.Size(42, 42);
+            this.equipmentItem21.TabIndex = 31;
+            this.equipmentItem21.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.equipmentItem21.Click += new System.EventHandler(this.equipmentItem_Click);
+            this.equipmentItem21.MouseEnter += new System.EventHandler(this.equipmentItem_MouseEnter);
+            this.equipmentItem21.MouseLeave += new System.EventHandler(this.equipmentItem_MouseLeave);
+            // 
+            // equipmentItem20
+            // 
+            this.equipmentItem20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.equipmentItem20.Location = new System.Drawing.Point(505, 214);
+            this.equipmentItem20.Name = "equipmentItem20";
+            this.equipmentItem20.ShowItemCount = true;
+            this.equipmentItem20.Size = new System.Drawing.Size(42, 42);
+            this.equipmentItem20.TabIndex = 30;
+            this.equipmentItem20.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.equipmentItem20.Click += new System.EventHandler(this.equipmentItem_Click);
+            this.equipmentItem20.MouseEnter += new System.EventHandler(this.equipmentItem_MouseEnter);
+            this.equipmentItem20.MouseLeave += new System.EventHandler(this.equipmentItem_MouseLeave);
+            // 
+            // equipmentItem19
+            // 
+            this.equipmentItem19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.equipmentItem19.Location = new System.Drawing.Point(505, 167);
+            this.equipmentItem19.Name = "equipmentItem19";
+            this.equipmentItem19.ShowItemCount = true;
+            this.equipmentItem19.Size = new System.Drawing.Size(42, 42);
+            this.equipmentItem19.TabIndex = 29;
+            this.equipmentItem19.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.equipmentItem19.Click += new System.EventHandler(this.equipmentItem_Click);
+            this.equipmentItem19.MouseEnter += new System.EventHandler(this.equipmentItem_MouseEnter);
+            this.equipmentItem19.MouseLeave += new System.EventHandler(this.equipmentItem_MouseLeave);
+            // 
+            // label31
+            // 
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(488, 126);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(78, 36);
+            this.label31.TabIndex = 28;
+            this.label31.Text = "(Social)\r\nAccessories";
+            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // equipmentItem18
+            // 
+            this.equipmentItem18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.equipmentItem18.Location = new System.Drawing.Point(434, 355);
+            this.equipmentItem18.Name = "equipmentItem18";
+            this.equipmentItem18.ShowItemCount = true;
+            this.equipmentItem18.Size = new System.Drawing.Size(42, 42);
+            this.equipmentItem18.TabIndex = 27;
+            this.equipmentItem18.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.equipmentItem18.Click += new System.EventHandler(this.equipmentItem_Click);
+            this.equipmentItem18.MouseEnter += new System.EventHandler(this.equipmentItem_MouseEnter);
+            this.equipmentItem18.MouseLeave += new System.EventHandler(this.equipmentItem_MouseLeave);
+            // 
+            // equipmentItem17
+            // 
+            this.equipmentItem17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.equipmentItem17.Location = new System.Drawing.Point(434, 308);
+            this.equipmentItem17.Name = "equipmentItem17";
+            this.equipmentItem17.ShowItemCount = true;
+            this.equipmentItem17.Size = new System.Drawing.Size(42, 42);
+            this.equipmentItem17.TabIndex = 26;
+            this.equipmentItem17.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.equipmentItem17.Click += new System.EventHandler(this.equipmentItem_Click);
+            this.equipmentItem17.MouseEnter += new System.EventHandler(this.equipmentItem_MouseEnter);
+            this.equipmentItem17.MouseLeave += new System.EventHandler(this.equipmentItem_MouseLeave);
+            // 
+            // equipmentItem16
+            // 
+            this.equipmentItem16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.equipmentItem16.Location = new System.Drawing.Point(434, 261);
+            this.equipmentItem16.Name = "equipmentItem16";
+            this.equipmentItem16.ShowItemCount = true;
+            this.equipmentItem16.Size = new System.Drawing.Size(42, 42);
+            this.equipmentItem16.TabIndex = 25;
+            this.equipmentItem16.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.equipmentItem16.Click += new System.EventHandler(this.equipmentItem_Click);
+            this.equipmentItem16.MouseEnter += new System.EventHandler(this.equipmentItem_MouseEnter);
+            this.equipmentItem16.MouseLeave += new System.EventHandler(this.equipmentItem_MouseLeave);
+            // 
+            // equipmentItem15
+            // 
+            this.equipmentItem15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.equipmentItem15.Location = new System.Drawing.Point(434, 214);
+            this.equipmentItem15.Name = "equipmentItem15";
+            this.equipmentItem15.ShowItemCount = true;
+            this.equipmentItem15.Size = new System.Drawing.Size(42, 42);
+            this.equipmentItem15.TabIndex = 24;
+            this.equipmentItem15.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.equipmentItem15.Click += new System.EventHandler(this.equipmentItem_Click);
+            this.equipmentItem15.MouseEnter += new System.EventHandler(this.equipmentItem_MouseEnter);
+            this.equipmentItem15.MouseLeave += new System.EventHandler(this.equipmentItem_MouseLeave);
+            // 
+            // equipmentItem14
+            // 
+            this.equipmentItem14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.equipmentItem14.Location = new System.Drawing.Point(434, 167);
+            this.equipmentItem14.Name = "equipmentItem14";
+            this.equipmentItem14.ShowItemCount = true;
+            this.equipmentItem14.Size = new System.Drawing.Size(42, 42);
+            this.equipmentItem14.TabIndex = 23;
+            this.equipmentItem14.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.equipmentItem14.Click += new System.EventHandler(this.equipmentItem_Click);
+            this.equipmentItem14.MouseEnter += new System.EventHandler(this.equipmentItem_MouseEnter);
+            this.equipmentItem14.MouseLeave += new System.EventHandler(this.equipmentItem_MouseLeave);
             // 
             // btnLoadEquipmentSet
             // 
@@ -2125,7 +2320,7 @@ namespace tsge
             // label23
             // 
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(393, 252);
+            this.label23.Location = new System.Drawing.Point(415, 139);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(78, 23);
             this.label23.TabIndex = 20;
@@ -2135,7 +2330,7 @@ namespace tsge
             // label22
             // 
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(347, 158);
+            this.label22.Location = new System.Drawing.Point(347, 3);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(45, 23);
             this.label22.TabIndex = 14;
@@ -2145,7 +2340,7 @@ namespace tsge
             // label21
             // 
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(289, 158);
+            this.label21.Location = new System.Drawing.Point(289, 3);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(45, 23);
             this.label21.TabIndex = 10;
@@ -2155,7 +2350,7 @@ namespace tsge
             // label20
             // 
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(234, 158);
+            this.label20.Location = new System.Drawing.Point(234, 3);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(42, 23);
             this.label20.TabIndex = 9;
@@ -2256,7 +2451,7 @@ namespace tsge
             // equipmentItem13
             // 
             this.equipmentItem13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.equipmentItem13.Location = new System.Drawing.Point(408, 210);
+            this.equipmentItem13.Location = new System.Drawing.Point(350, 355);
             this.equipmentItem13.Name = "equipmentItem13";
             this.equipmentItem13.ShowItemCount = true;
             this.equipmentItem13.Size = new System.Drawing.Size(42, 42);
@@ -2270,7 +2465,7 @@ namespace tsge
             // equipmentItem12
             // 
             this.equipmentItem12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.equipmentItem12.Location = new System.Drawing.Point(408, 163);
+            this.equipmentItem12.Location = new System.Drawing.Point(350, 308);
             this.equipmentItem12.Name = "equipmentItem12";
             this.equipmentItem12.ShowItemCount = true;
             this.equipmentItem12.Size = new System.Drawing.Size(42, 42);
@@ -2284,7 +2479,7 @@ namespace tsge
             // equipmentItem11
             // 
             this.equipmentItem11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.equipmentItem11.Location = new System.Drawing.Point(408, 116);
+            this.equipmentItem11.Location = new System.Drawing.Point(350, 261);
             this.equipmentItem11.Name = "equipmentItem11";
             this.equipmentItem11.ShowItemCount = true;
             this.equipmentItem11.Size = new System.Drawing.Size(42, 42);
@@ -2298,7 +2493,7 @@ namespace tsge
             // equipmentItem10
             // 
             this.equipmentItem10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.equipmentItem10.Location = new System.Drawing.Point(408, 69);
+            this.equipmentItem10.Location = new System.Drawing.Point(350, 214);
             this.equipmentItem10.Name = "equipmentItem10";
             this.equipmentItem10.ShowItemCount = true;
             this.equipmentItem10.Size = new System.Drawing.Size(42, 42);
@@ -2312,7 +2507,7 @@ namespace tsge
             // equipmentItem09
             // 
             this.equipmentItem09.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.equipmentItem09.Location = new System.Drawing.Point(408, 22);
+            this.equipmentItem09.Location = new System.Drawing.Point(350, 167);
             this.equipmentItem09.Name = "equipmentItem09";
             this.equipmentItem09.ShowItemCount = true;
             this.equipmentItem09.Size = new System.Drawing.Size(42, 42);
@@ -2326,7 +2521,7 @@ namespace tsge
             // equipmentItem08
             // 
             this.equipmentItem08.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.equipmentItem08.Location = new System.Drawing.Point(350, 116);
+            this.equipmentItem08.Location = new System.Drawing.Point(350, 120);
             this.equipmentItem08.Name = "equipmentItem08";
             this.equipmentItem08.ShowItemCount = true;
             this.equipmentItem08.Size = new System.Drawing.Size(42, 42);
@@ -2340,7 +2535,7 @@ namespace tsge
             // equipmentItem07
             // 
             this.equipmentItem07.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.equipmentItem07.Location = new System.Drawing.Point(350, 69);
+            this.equipmentItem07.Location = new System.Drawing.Point(350, 73);
             this.equipmentItem07.Name = "equipmentItem07";
             this.equipmentItem07.ShowItemCount = true;
             this.equipmentItem07.Size = new System.Drawing.Size(42, 42);
@@ -2354,7 +2549,7 @@ namespace tsge
             // equipmentItem06
             // 
             this.equipmentItem06.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.equipmentItem06.Location = new System.Drawing.Point(350, 22);
+            this.equipmentItem06.Location = new System.Drawing.Point(350, 26);
             this.equipmentItem06.Name = "equipmentItem06";
             this.equipmentItem06.ShowItemCount = true;
             this.equipmentItem06.Size = new System.Drawing.Size(42, 42);
@@ -2368,7 +2563,7 @@ namespace tsge
             // equipmentItem05
             // 
             this.equipmentItem05.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.equipmentItem05.Location = new System.Drawing.Point(292, 116);
+            this.equipmentItem05.Location = new System.Drawing.Point(292, 120);
             this.equipmentItem05.Name = "equipmentItem05";
             this.equipmentItem05.ShowItemCount = true;
             this.equipmentItem05.Size = new System.Drawing.Size(42, 42);
@@ -2382,7 +2577,7 @@ namespace tsge
             // equipmentItem04
             // 
             this.equipmentItem04.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.equipmentItem04.Location = new System.Drawing.Point(292, 69);
+            this.equipmentItem04.Location = new System.Drawing.Point(292, 73);
             this.equipmentItem04.Name = "equipmentItem04";
             this.equipmentItem04.ShowItemCount = true;
             this.equipmentItem04.Size = new System.Drawing.Size(42, 42);
@@ -2396,7 +2591,7 @@ namespace tsge
             // equipmentItem03
             // 
             this.equipmentItem03.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.equipmentItem03.Location = new System.Drawing.Point(292, 22);
+            this.equipmentItem03.Location = new System.Drawing.Point(292, 26);
             this.equipmentItem03.Name = "equipmentItem03";
             this.equipmentItem03.ShowItemCount = true;
             this.equipmentItem03.Size = new System.Drawing.Size(42, 42);
@@ -2410,7 +2605,7 @@ namespace tsge
             // equipmentItem02
             // 
             this.equipmentItem02.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.equipmentItem02.Location = new System.Drawing.Point(234, 116);
+            this.equipmentItem02.Location = new System.Drawing.Point(234, 120);
             this.equipmentItem02.Name = "equipmentItem02";
             this.equipmentItem02.ShowItemCount = true;
             this.equipmentItem02.Size = new System.Drawing.Size(42, 42);
@@ -2424,7 +2619,7 @@ namespace tsge
             // equipmentItem01
             // 
             this.equipmentItem01.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.equipmentItem01.Location = new System.Drawing.Point(234, 69);
+            this.equipmentItem01.Location = new System.Drawing.Point(234, 73);
             this.equipmentItem01.Name = "equipmentItem01";
             this.equipmentItem01.ShowItemCount = true;
             this.equipmentItem01.Size = new System.Drawing.Size(42, 42);
@@ -2438,7 +2633,7 @@ namespace tsge
             // equipmentItem00
             // 
             this.equipmentItem00.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.equipmentItem00.Location = new System.Drawing.Point(234, 22);
+            this.equipmentItem00.Location = new System.Drawing.Point(234, 26);
             this.equipmentItem00.Name = "equipmentItem00";
             this.equipmentItem00.ShowItemCount = true;
             this.equipmentItem00.Size = new System.Drawing.Size(42, 42);
@@ -2460,7 +2655,7 @@ namespace tsge
             this.tpBankSafe.Controls.Add(this.groupBox10);
             this.tpBankSafe.Location = new System.Drawing.Point(4, 22);
             this.tpBankSafe.Name = "tpBankSafe";
-            this.tpBankSafe.Size = new System.Drawing.Size(691, 474);
+            this.tpBankSafe.Size = new System.Drawing.Size(612, 413);
             this.tpBankSafe.TabIndex = 4;
             this.tpBankSafe.Text = "Bank / Safe";
             this.tpBankSafe.UseVisualStyleBackColor = true;
@@ -3920,7 +4115,7 @@ namespace tsge
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(620, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(620, 27);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -3928,7 +4123,7 @@ namespace tsge
             // 
             this.tscboQuickSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tscboQuickSelect.Name = "tscboQuickSelect";
-            this.tscboQuickSelect.Size = new System.Drawing.Size(121, 21);
+            this.tscboQuickSelect.Size = new System.Drawing.Size(121, 23);
             this.tscboQuickSelect.DropDown += new System.EventHandler(this.tscboQuickSelect_DropDown);
             this.tscboQuickSelect.SelectedIndexChanged += new System.EventHandler(this.tscboQuickSelect_SelectedIndexChanged);
             // 
@@ -3943,14 +4138,14 @@ namespace tsge
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 21);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 23);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // newCharacterToolStripMenuItem
             // 
             this.newCharacterToolStripMenuItem.Image = global::tsge.Properties.Resources.status_online;
             this.newCharacterToolStripMenuItem.Name = "newCharacterToolStripMenuItem";
-            this.newCharacterToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.newCharacterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newCharacterToolStripMenuItem.Text = "New Character";
             this.newCharacterToolStripMenuItem.Click += new System.EventHandler(this.newCharacterToolStripMenuItem_Click);
             // 
@@ -3958,20 +4153,20 @@ namespace tsge
             // 
             this.openToolStripMenuItem.Image = global::tsge.Properties.Resources.folder_user;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Image = global::tsge.Properties.Resources.page_save;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -3979,20 +4174,20 @@ namespace tsge
             // 
             this.saveAsToolStripMenuItem.Image = global::tsge.Properties.Resources.script_save;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Image = global::tsge.Properties.Resources.stop;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -4002,14 +4197,14 @@ namespace tsge
             this.aboutTSGEToolStripMenuItem,
             this.checkForUpdatesToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 21);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 23);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutTSGEToolStripMenuItem
             // 
             this.aboutTSGEToolStripMenuItem.Image = global::tsge.Properties.Resources.information;
             this.aboutTSGEToolStripMenuItem.Name = "aboutTSGEToolStripMenuItem";
-            this.aboutTSGEToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.aboutTSGEToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.aboutTSGEToolStripMenuItem.Text = "About TSGE";
             this.aboutTSGEToolStripMenuItem.Click += new System.EventHandler(this.aboutTSGEToolStripMenuItem_Click);
             // 
@@ -4017,7 +4212,7 @@ namespace tsge
             // 
             this.checkForUpdatesToolStripMenuItem.Image = global::tsge.Properties.Resources._new;
             this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.checkForUpdatesToolStripMenuItem.Text = "Check For Updates";
             this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
             // 
@@ -4025,26 +4220,6 @@ namespace tsge
             // 
             this.inventoryBindingSource.DataMember = "Inventory";
             this.inventoryBindingSource.DataSource = this.playerBindingSource;
-            // 
-            // btnLoadBuffs
-            // 
-            this.btnLoadBuffs.Location = new System.Drawing.Point(156, 362);
-            this.btnLoadBuffs.Name = "btnLoadBuffs";
-            this.btnLoadBuffs.Size = new System.Drawing.Size(125, 23);
-            this.btnLoadBuffs.TabIndex = 8;
-            this.btnLoadBuffs.Text = "Load Buffs";
-            this.btnLoadBuffs.UseVisualStyleBackColor = true;
-            this.btnLoadBuffs.Click += new System.EventHandler(this.btnLoadBuffs_Click);
-            // 
-            // btnSaveBuffs
-            // 
-            this.btnSaveBuffs.Location = new System.Drawing.Point(6, 362);
-            this.btnSaveBuffs.Name = "btnSaveBuffs";
-            this.btnSaveBuffs.Size = new System.Drawing.Size(125, 23);
-            this.btnSaveBuffs.TabIndex = 7;
-            this.btnSaveBuffs.Text = "Save Buffs";
-            this.btnSaveBuffs.UseVisualStyleBackColor = true;
-            this.btnSaveBuffs.Click += new System.EventHandler(this.btnSaveBuffs_Click);
             // 
             // frmMain
             // 
@@ -4389,6 +4564,18 @@ namespace tsge
         private Button btnLoadColorHair;
         private Button btnLoadBuffs;
         private Button btnSaveBuffs;
+        private CheckBox chkHideVisual;
+        private Label label31;
+        private Controls.ItemLabel equipmentItem18;
+        private Controls.ItemLabel equipmentItem17;
+        private Controls.ItemLabel equipmentItem16;
+        private Controls.ItemLabel equipmentItem15;
+        private Controls.ItemLabel equipmentItem14;
+        private Controls.ItemLabel equipmentItem23;
+        private Controls.ItemLabel equipmentItem22;
+        private Controls.ItemLabel equipmentItem21;
+        private Controls.ItemLabel equipmentItem20;
+        private Controls.ItemLabel equipmentItem19;
 
     }
 }

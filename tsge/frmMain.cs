@@ -123,7 +123,7 @@ namespace tsge
             }
 
             // Prepare equipment item label list..
-            for (var x = 0; x < 14; x++)
+            for (var x = 0; x < 24; x++)
             {
                 // Find the label..
                 var label = (ItemLabel)this.Controls.Find(string.Format("equipmentItem{0:d2}", x), true)[0];
@@ -309,11 +309,21 @@ namespace tsge
             UpdateEquipmentLabel(this.m_EquipmentLabels[06], this.Player.Dye[0]);
             UpdateEquipmentLabel(this.m_EquipmentLabels[07], this.Player.Dye[1]);
             UpdateEquipmentLabel(this.m_EquipmentLabels[08], this.Player.Dye[2]);
-            UpdateEquipmentLabel(this.m_EquipmentLabels[09], this.Player.Accessories[0]);
-            UpdateEquipmentLabel(this.m_EquipmentLabels[10], this.Player.Accessories[1]);
-            UpdateEquipmentLabel(this.m_EquipmentLabels[11], this.Player.Accessories[2]);
-            UpdateEquipmentLabel(this.m_EquipmentLabels[12], this.Player.Accessories[3]);
-            UpdateEquipmentLabel(this.m_EquipmentLabels[13], this.Player.Accessories[4]);
+            UpdateEquipmentLabel(this.m_EquipmentLabels[09], this.Player.Dye[3]);
+            UpdateEquipmentLabel(this.m_EquipmentLabels[10], this.Player.Dye[4]);
+            UpdateEquipmentLabel(this.m_EquipmentLabels[11], this.Player.Dye[5]);
+            UpdateEquipmentLabel(this.m_EquipmentLabels[12], this.Player.Dye[6]);
+            UpdateEquipmentLabel(this.m_EquipmentLabels[13], this.Player.Dye[7]);
+            UpdateEquipmentLabel(this.m_EquipmentLabels[14], this.Player.Accessories[0]);
+            UpdateEquipmentLabel(this.m_EquipmentLabels[15], this.Player.Accessories[1]);
+            UpdateEquipmentLabel(this.m_EquipmentLabels[16], this.Player.Accessories[2]);
+            UpdateEquipmentLabel(this.m_EquipmentLabels[17], this.Player.Accessories[3]);
+            UpdateEquipmentLabel(this.m_EquipmentLabels[18], this.Player.Accessories[4]);
+            UpdateEquipmentLabel(this.m_EquipmentLabels[19], this.Player.SocialAccessories[0]);
+            UpdateEquipmentLabel(this.m_EquipmentLabels[20], this.Player.SocialAccessories[1]);
+            UpdateEquipmentLabel(this.m_EquipmentLabels[21], this.Player.SocialAccessories[2]);
+            UpdateEquipmentLabel(this.m_EquipmentLabels[22], this.Player.SocialAccessories[3]);
+            UpdateEquipmentLabel(this.m_EquipmentLabels[23], this.Player.SocialAccessories[4]);
 
             // Update the bank/safe..
             for (var x = 0; x < this.m_BankSafeLabels.Count; x++)
@@ -1620,22 +1630,28 @@ namespace tsge
                 this.Player.Armor[slot].SetItem(item.NetID);
             }
 
-                // Vanity..
+            // Vanity..
             else if (slot == 3 || slot == 4 || slot == 5)
             {
                 this.Player.Vanity[slot - 3].SetItem(item.NetID);
             }
 
-                // Dye..
-            else if (slot == 6 || slot == 7 || slot == 8)
+            // Dye..
+            else if (slot >= 6 && slot <= 13)
             {
                 this.Player.Dye[slot - 6].SetItem(item.NetID);
             }
 
-                // Accessories..
+            // Accessories..
+            else if (slot >= 14 && slot <= 18)
+            {
+                this.Player.Accessories[slot - 14].SetItem(item.NetID);
+            }
+
+            // Social Accessories
             else
             {
-                this.Player.Accessories[slot - 9].SetItem(item.NetID);
+                this.Player.SocialAccessories[slot - 19].SetItem(item.NetID);
             }
 
             // Update the inventory label..
@@ -1689,7 +1705,7 @@ namespace tsge
             }
 
                 // Dye..
-            else if (slot == 6 || slot == 7 || slot == 8)
+            else if (slot >= 6 && slot <= 13)
             {
                 if (this.Player.Dye[slot - 6].NetID == 0)
                     return;
@@ -1698,12 +1714,21 @@ namespace tsge
             }
 
                 // Accessories..
+            else if (slot >= 14 && slot <= 18)
+            {
+                if (this.Player.Accessories[slot - 14].NetID == 0)
+                    return;
+                this.Player.Accessories[slot - 14].Prefix = (byte)prefix.Id;
+                this.m_Tooltip.SetToolTip(this.m_SelectedEquipmentItem, this.Player.Accessories[slot - 14].ToString());
+            }
+
+            // Social Accessories..
             else
             {
-                if (this.Player.Accessories[slot - 9].NetID == 0)
+                if (this.Player.SocialAccessories[slot - 19].NetID == 0)
                     return;
-                this.Player.Accessories[slot - 9].Prefix = (byte)prefix.Id;
-                this.m_Tooltip.SetToolTip(this.m_SelectedEquipmentItem, this.Player.Accessories[slot - 9].ToString());
+                this.Player.SocialAccessories[slot - 19].Prefix = (byte)prefix.Id;
+                this.m_Tooltip.SetToolTip(this.m_SelectedEquipmentItem, this.Player.SocialAccessories[slot - 19].ToString());
             }
         }
 
@@ -1753,17 +1778,27 @@ namespace tsge
                 case 6: // Dye
                 case 7: // Dye
                 case 8: // Dye
+                case 9: // Dye
+                case 10: // Dye
+                case 11: // Dye
+                case 12: // Dye
+                case 13: // Dye
                     {
                         var items = CreateFilteredItemList(this.txtEquipmentFilter.Text, 0);
                         this.lstEquipmentItems.DataSource = items.Where(i => i.Dye > 0 || i.NetID == 0).ToList();
                         break;
                     }
 
-                case 9: // Accessory
-                case 10: // Accessory
-                case 11: // Accessory
-                case 12: // Accessory
-                case 13: // Accessory
+                case 14: // Accessory
+                case 15: // Accessory
+                case 16: // Accessory
+                case 17: // Accessory
+                case 18: // Accessory
+                case 19: // Accessory
+                case 20: // Accessory
+                case 21: // Accessory
+                case 22: // Accessory
+                case 23: // Accessory
                     {
                         var items = CreateFilteredItemList(this.txtEquipmentFilter.Text, 2);
                         this.lstEquipmentItems.DataSource = items.ToList();

@@ -53,6 +53,7 @@ namespace tsge.Classes
             this.Armor = new Item[3];
             this.Vanity = new Item[3];
             this.Accessories = new Item[5];
+            this.SocialAccessories = new Item[5];
             this.Dye = new Item[8];
             this.Inventory = new Item[58];
             this.Bank1 = new Item[40];
@@ -71,6 +72,9 @@ namespace tsge.Classes
 
             for (var x = 0; x < this.Accessories.Length; x++)
                 this.Accessories[x] = item.Clone() as Item;
+
+            for (var x = 0; x < this.SocialAccessories.Length; x++)
+                this.SocialAccessories[x] = item.Clone() as Item;
 
             for (var x = 0; x < this.Dye.Length; x++)
                 this.Dye[x] = item.Clone() as Item;
@@ -134,6 +138,24 @@ namespace tsge.Classes
         {
             get { return this.Get<int>("Hair"); }
             set { this.Set("Hair", value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the hair dye of this player.
+        /// </summary>
+        public byte HairDye
+        {
+            get { return this.Get<byte>("HairDye"); }
+            set { this.Set("HairDye", value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the hide visual flag of this player.
+        /// </summary>
+        public byte HideVisual
+        {
+            get { return this.Get<byte>("HideVisual"); }
+            set { this.Set("HideVisual", value); }
         }
 
         /// <summary>
@@ -269,6 +291,15 @@ namespace tsge.Classes
         {
             get { return this.Get<Item[]>("Accessories"); }
             set { this.Set("Accessories", value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the social accessory items of this player.
+        /// </summary>
+        public Item[] SocialAccessories
+        {
+            get { return this.Get<Item[]>("SocialAccessories"); }
+            set { this.Set("SocialAccessories", value); }
         }
 
         /// <summary>

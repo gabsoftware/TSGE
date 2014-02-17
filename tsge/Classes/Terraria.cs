@@ -237,11 +237,11 @@ namespace tsge.Classes
 
                         // Hair Dye
                         if (p.GameVersion >= 82)
-                            bReader.ReadByte();
+                            p.HairDye = bReader.ReadByte();
 
                         // Hide Visual
                         if (p.GameVersion >= 83)
-                            bReader.ReadByte();
+                            p.HideVisual = bReader.ReadByte();
 
                         p.IsMale = bReader.ReadBoolean();
                         p.Health = bReader.ReadInt32();
@@ -279,11 +279,11 @@ namespace tsge.Classes
                             p.Vanity[x].Prefix = bReader.ReadByte();
                         }
 
-                        // TODO: Handle new social equipment slots..
+                        // Read social accessories..
                         for (var x = 0; x < 5; x++)
                         {
-                            bReader.ReadInt32();
-                            bReader.ReadByte();
+                            p.SocialAccessories[x].SetItem(bReader.ReadInt32());
+                            p.SocialAccessories[x].Prefix = bReader.ReadByte();
                         }
 
                         // Read dye items..
@@ -418,9 +418,9 @@ namespace tsge.Classes
                 bWriter.Write(player.Difficulty);
                 bWriter.Write(player.Hair);
 
-                // TODO: Handle hair dye / visual flags..
-                bWriter.Write((byte)0);
-                bWriter.Write((byte)0);
+                // Write hair dye and hide visual flag..
+                bWriter.Write((byte)player.HairDye);
+                bWriter.Write((byte)player.HideVisual);
 
                 bWriter.Write(player.IsMale);
                 bWriter.Write(player.Health);
@@ -458,11 +458,11 @@ namespace tsge.Classes
                     bWriter.Write(player.Vanity[x].Prefix);
                 }
 
-                // TODO: Handle new social equipment slots..
+                // Write social accessories items..
                 for (var x = 0; x < 5; x++)
                 {
-                    bWriter.Write((int)0);
-                    bWriter.Write((byte)0);
+                    bWriter.Write(player.SocialAccessories[x].NetID);
+                    bWriter.Write(player.SocialAccessories[x].Prefix);
                 }
 
                 // Write player dye..
