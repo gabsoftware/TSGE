@@ -54,12 +54,12 @@ namespace tsge.Classes
         /// <summary>
         /// Current supported game version.
         /// </summary>
-        public static List<int> GameVersions = new List<int>(new[] { 38, 47, 58, 68, 69, 70, 71, 72, 73, 77, 81, 83, 93 });
+        public static List<int> GameVersions = new List<int>(new[] { 38, 47, 58, 68, 69, 70, 71, 72, 73, 77, 81, 83, 93, 94 });
 
         /// <summary>
         /// The latest supported version of Terraria.
         /// </summary>
-        public static int LatestVersion = 93;
+        public static int LatestVersion = 94;
 
         /// <summary>
         /// Profile path to the Terraria save game files.

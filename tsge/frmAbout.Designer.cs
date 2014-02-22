@@ -201,9 +201,9 @@ namespace tsge
             this.label9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(162, 310);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(70, 13);
+            this.label9.Size = new System.Drawing.Size(110, 13);
             this.label9.TabIndex = 12;
-            this.label9.Text = "Terraria 1.2.3";
+            this.label9.Text = "Terraria 1.2.3 / 1.2.3.1";
             // 
             // frmAbout
             // 
