@@ -1220,6 +1220,11 @@ namespace tsge
         /// <param name="e"></param>
         private void cboInventoryPrefixCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.cboInventoryPrefixCategory.SelectedItem == null)
+            {
+                return;
+            }
+
             this.cboInventoryPrefix.SelectedIndexChanged -= this.cboInventoryPrefix_SelectedIndexChanged;
             var item = CreateFilteredPrefixList(this.cboInventoryPrefixCategory.SelectedIndex);
             this.cboInventoryPrefix.DataSource = item.ToList();
@@ -1241,6 +1246,59 @@ namespace tsge
 
             foreach (var label in this.m_InventoryLabels.Where(label => label != this.m_SelectedInventoryItem))
                 label.BackColor = Color.Transparent;
+
+            // select the current inventory item prefix if available
+            this.selectItemPrefix(this.m_SelectedInventoryItem, this.cboInventoryPrefixCategory, this.cboInventoryPrefix, this.Player.Inventory);
+        }
+
+        /// <summary>
+        /// select the current item prefix if available
+        /// </summary>
+        /// <param name="lbl"></param>
+        /// <param name="cboPrefixCategory"></param>
+        /// <param name="cboPrefix"></param>
+        private void selectItemPrefix(Label lbl, ComboBox cboPrefixCategory, ComboBox cboPrefix, Item[] items, int offset = 0)
+        {
+            int slot = (int)lbl.Tag;
+
+            // Ensure the slot has an item...
+            if (items[slot - offset].NetID == 0)
+            {
+                //deselect the prefix in the list
+                cboPrefixCategory.SelectedIndex = -1;
+                cboPrefix.DataSource = null;
+                cboPrefix.SelectedIndex = -1;
+                return;
+            }
+
+            //get the prefix id
+            byte prefix_id = items[slot - offset].Prefix;
+            if (prefix_id == 0)
+            {
+                //deselect the prefix in the list
+                cboPrefixCategory.SelectedIndex = -1;
+                cboPrefix.DataSource = null;
+                cboPrefix.SelectedIndex = -1;
+                return;
+            }
+
+            //get the Prefix object
+            ItemPrefix prefix = Terraria.Instance.Prefixes.SingleOrDefault(p => p.Id == prefix_id);
+
+            //if valid prefix
+            if (prefix != null && prefix.Id > 0)
+            {
+                //select the prefix in the list
+                cboPrefixCategory.SelectedIndex = 0;
+                cboPrefix.SelectedItem = prefix;
+            }
+            else
+            {
+                //deselect the prefix in the list
+                cboPrefixCategory.SelectedIndex = -1;
+                cboPrefix.DataSource = null;
+                cboPrefix.SelectedIndex = -1;
+            }
         }
 
         /// <summary>
@@ -1299,6 +1357,11 @@ namespace tsge
         {
             if (this.m_SelectedInventoryItem == null)
                 return;
+
+            if (this.cboInventoryPrefix.SelectedItem == null)
+            {
+                return;
+            }
 
             // Set the inventory item..
             var prefix = (ItemPrefix)this.cboInventoryPrefix.SelectedItem;
@@ -1577,6 +1640,40 @@ namespace tsge
                 label.BackColor = Color.Transparent;
 
             this.SetEquipmentListContext();
+
+            // select the current equipment item prefix if available
+            int index = Convert.ToInt32(this.m_SelectedEquipmentItem.Name.Substring(this.m_SelectedEquipmentItem.Name.Length - 2));
+            int offset;
+            Item[] items;
+            if (index <= 2)
+            {
+                items = this.Player.Armor;
+                offset = 0;
+            }
+            else if (index > 2 && index <= 5)
+            {
+                items = this.Player.Vanity;
+                offset = 3;
+            }
+            else if (index > 13 && index <= 18)
+            {
+                items = this.Player.Accessories;
+                offset = 14;
+            }
+            else if (index > 18 && index <= 23)
+            {
+                items = this.Player.SocialAccessories;
+                offset = 19;
+            }
+            else
+            {
+                items = null;
+                offset = 0;
+            }
+            if (items != null)
+            {
+                this.selectItemPrefix(this.m_SelectedEquipmentItem, this.cboEquipmentPrefixCategory, this.cboEquipmentPrefix, items, offset);
+            }   
         }
 
         /// <summary>
@@ -1667,6 +1764,11 @@ namespace tsge
         /// <param name="e"></param>
         private void cboEquipmentPrefixCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.cboEquipmentPrefixCategory.SelectedItem == null)
+            {
+                return;
+            }
+
             this.cboEquipmentPrefix.SelectedIndexChanged -= this.cboEquipmentPrefix_SelectedIndexChanged;
             var item = CreateFilteredPrefixList(this.cboEquipmentPrefixCategory.SelectedIndex);
             this.cboEquipmentPrefix.DataSource = item.ToList();
@@ -1682,6 +1784,11 @@ namespace tsge
         {
             if (this.m_SelectedEquipmentItem == null)
                 return;
+
+            if (this.cboEquipmentPrefix.SelectedItem == null)
+            {
+                return;
+            }
 
             var prefix = (ItemPrefix)this.cboEquipmentPrefix.SelectedItem;
             var slot = (int)this.m_SelectedEquipmentItem.Tag;
